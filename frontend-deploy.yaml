@@ -1,10 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
+  name: go-todo-app-frontend
   labels:
     app: go-todo-app-frontend
-  name: go-todo-app-frontend
 spec:
   replicas: 2
   selector:
@@ -17,14 +16,13 @@ spec:
       maxUnavailable: 0
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: go-todo-app-frontend
     spec:
       imagePullSecrets:
         - name: ecr-registry-secret
       containers:
-      - image: 882437029250.dkr.ecr.us-east-1.amazonaws.com/go-todo-app-frontend:4bd291282dde65d5a897513a8006604fb1408d4e
+      - image: 882437029250.dkr.ecr.us-east-1.amazonaws.com/go-todo-app-frontend:a8158a549d1ceb1f028ef27bb3182d8323200ea4
         name: go-todo-app-frontend
         imagePullPolicy: Always
         ports:
