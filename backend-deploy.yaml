@@ -21,8 +21,6 @@ spec:
       labels:
         app: go-todo-app-backend
     spec:
-      imagePullSecrets:
-        - name: ecr-registry-secret
       containers:
       - image: 882437029250.dkr.ecr.us-east-1.amazonaws.com/go-todo-app-backend:3565b38753b0bda82917728ac5a423b7712c379e
         name: go-todo-app-backend
