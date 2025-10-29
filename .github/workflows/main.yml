@@ -33,5 +33,5 @@ jobs:
     - name: Deploy Changes to EKS
       run: |
         kubectl apply -f .
-        kubectl rollout status deployment/your-backend-deployment-name -n default
-        kubectl rollout status deployment/your-frontend-deployment-name -n default
+        kubectl rollout status deployment/go-todo-app-backend -n default
+        kubectl rollout status deployment/go-todo-app-frontend -n default
