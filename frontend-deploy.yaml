@@ -24,7 +24,7 @@ spec:
       imagePullSecrets:
         - name: ecr-registry-secret
       containers:
-      - image: 882437029250.dkr.ecr.us-east-1.amazonaws.com/go-todo-app-frontend:200a2fdb1d2eac22f55754b1764655607f141145
+      - image: 882437029250.dkr.ecr.us-east-1.amazonaws.com/go-todo-app-frontend:a8158a549d1ceb1f028ef27bb3182d8323200ea4
         name: go-todo-app-frontend
         imagePullPolicy: Always
         ports:
