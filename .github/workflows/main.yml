@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout K8s Repo
+    - name: Checkout
       uses: actions/checkout@v3
 
     - name: Configure AWS Credentials
@@ -23,15 +23,30 @@ jobs:
     - name: Update kubeconfig
       run: |
         aws eks update-kubeconfig \
-          --region ap-south-1 \
-          --name node-app-demo-eks-cluster
+        --region ap-south-1 \
+        --name node-app-demo-eks-cluster
 
-    - name: Validate K8s Manifests
+    - name: Validate manifests ✅
       run: |
         kubectl apply -f . --dry-run=client
 
-    - name: Deploy Changes to EKS
+    - name: Apply manifests 🔄
       run: |
         kubectl apply -f .
-        kubectl rollout status deployment/go-todo-app-backend -n default
-        kubectl rollout status deployment/go-todo-app-frontend -n default
+
+    - name: Wait for backend rollout ✅
+      run: |
+        kubectl rollout status deployment/go-todo-app-backend --timeout=120s
+
+    - name: Wait for frontend rollout ✅
+      run: |
+        kubectl rollout status deployment/go-todo-app-frontend --timeout=120s
+
+    - name: Verify service endpoints exist 🔍
+      run: |
+        kubectl get endpoints go-todo-app-backend-service -o wide
+        kubectl get endpoints go-todo-app-frontend-service -o wide
+
+    - name: Validate Ingress health 🌐
+      run: |
+        kubectl get ingress todo-app-ingress -o wide
