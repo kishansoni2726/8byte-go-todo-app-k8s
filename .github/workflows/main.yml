@@ -49,4 +49,4 @@ jobs:
 
     - name: Validate Ingress health 🌐
       run: |
-        kubectl get ingress todo-app-ingress -o wide
+        kubectl get ingress myfront-ingress -o wide
