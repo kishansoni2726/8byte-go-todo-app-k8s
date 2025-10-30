@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-configuration
+  namespace: ingress-nginx
+data:
+  # Enable global CORS
+  enable-cors: "true"
+
+  # CORS Settings
+  cors-allow-origin: "*"
+  cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS"
+  cors-allow-headers: "Origin, Content-Type, Accept, X-Frontend-Auth"
+  cors-expose-headers: "Content-Length"
+  cors-allow-credentials: "false"
+
+  # (Optional) Other useful tuning
+  proxy-read-timeout: "3600"
+  proxy-send-timeout: "3600"
+  use-forwarded-headers: "true"
